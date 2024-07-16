@@ -10,3 +10,12 @@ describe("Command class", function() {
   });
 
 });
+
+describe("constructor sets command type", function(){
+
+  it("should check that the constructor in the Command class correctly sets the commandType property in the new object", function(){
+    let newCommand = new Command(newCommandType);
+    expect(function() {new Command(newCommandType);}).toBe(newCommand.newCommandType === newCommandType);
+  });
+
+});
