@@ -19,3 +19,12 @@ describe("constructor sets command type", function(){
   });
 
 });
+
+describe("constructor sets a value passed in as the 2nd argument", function(){
+
+  it("should check that the constructor correctly sets the value property in the new object", function(){
+    let newCommand = new Command("newCommandType", "value");
+    expect(newCommand.value).toBe("value");
+  })
+
+});
