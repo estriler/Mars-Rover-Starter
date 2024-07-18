@@ -15,4 +15,13 @@ describe("Rover class", function() {
     expect(rover).toEqual({position: 100, mode: 'NORMAL', generatorWatts: 110});
   });
 
+  it("response returned by receiveMessage contains the name of the message", function(){
+    let rover = new Rover(100);
+    let command1 = new Command('commandType1', "value1");
+    let command2 = new Command("commandType2", "value2");
+    let newMessage = new Message("messageName", [command1, command2]);
+    let newReceivedMessage = rover.receiveMessage(newMessage);
+    expect(newReceivedMessage.message).toBe("messageName");
+  });
+
 });
