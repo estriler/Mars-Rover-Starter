@@ -9,7 +9,7 @@ class Rover {
    receiveMessage(orgMessage) {
       let obj = {
          message: orgMessage.name,
-         results: orgMessage.results
+         results: orgMessage.commands
       }
       return obj;
    }

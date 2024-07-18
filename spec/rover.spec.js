@@ -17,11 +17,18 @@ describe("Rover class", function() {
 
   it("response returned by receiveMessage contains the name of the message", function(){
     let rover = new Rover(100);
+    let newMessage = new Message("messageName");
+    let newReceivedMessage = rover.receiveMessage(newMessage);
+    expect(newReceivedMessage.message).toBe("messageName");
+  });
+
+  it("response returned by recieveMessage includes two results if two commands are sent in the message", function(){
+    let rover = new Rover(100);
     let command1 = new Command('commandType1', "value1");
     let command2 = new Command("commandType2", "value2");
     let newMessage = new Message("messageName", [command1, command2]);
     let newReceivedMessage = rover.receiveMessage(newMessage);
-    expect(newReceivedMessage.message).toBe("messageName");
+    expect(newReceivedMessage.results.length).toBe(2);
   });
 
 });
