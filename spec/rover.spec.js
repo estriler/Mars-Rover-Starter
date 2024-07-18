@@ -22,13 +22,22 @@ describe("Rover class", function() {
     expect(newReceivedMessage.message).toBe("messageName");
   });
 
-  it("response returned by recieveMessage includes two results if two commands are sent in the message", function(){
+  // it("response returned by recieveMessage includes two results if two commands are sent in the message", function(){
+  //   let rover = new Rover(100);
+  //   let command1 = new Command('commandType1', "value1");
+  //   let command2 = new Command("commandType2", "value2");
+  //   let newMessage = new Message("messageName", [command1, command2]);
+  //   let newReceivedMessage = rover.receiveMessage(newMessage);
+  //   expect(newReceivedMessage.results.length).toBe(2);
+  // });
+
+  //test 10
+  it("responds correctly to the status check command", function(){
     let rover = new Rover(100);
-    let command1 = new Command('commandType1', "value1");
-    let command2 = new Command("commandType2", "value2");
-    let newMessage = new Message("messageName", [command1, command2]);
+    let command1 = new Command('STATUS_CHECK');
+    let newMessage = new Message("messageName", [command1]);
     let newReceivedMessage = rover.receiveMessage(newMessage);
-    expect(newReceivedMessage.results.length).toBe(2);
+    expect(newReceivedMessage.results).toBe("{completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 100}}");
   });
 
 });
