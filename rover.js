@@ -1,25 +1,37 @@
-// const Message = require('./message.js');
-// const Command = require('./command.js');
+const Message = require('./message.js');
+const Command = require('./command.js');
 
 class Rover {
    // Write code here!
-   constructor(position, mode = 'NORMAL', generatorWatts = 110){
+   constructor(position){
       this.position = position;
-      this.mode = mode;
-      this.generatorWatts = generatorWatts;
+      this.mode = 'NORMAL';
+      this.generatorWatts = 110;
    }
 
    receiveMessage(orgMessage) {
-      let obj = {
-         message: orgMessage.name,
-         results: []
-      }
+      let results = [];
       for(let i = 0; i < orgMessage.commands.length; i++){
-         if(orgMessage.commands[i] === "STATUS_CHECK"){
-            results.push("completed: " + true + ", roverStatus: " + this.mode + ", generatorWatts: " + this.generatorWatts + ", position: " + this.position)
+         if(orgMessage.commands[i].commandType === "STATUS_CHECK"){
+            results.push({
+               completed: true,
+               roverStatus: {
+                  mode: this.mode,
+                  generatorWatts: this.generatorWatts,
+                  position: this.position
+               }
+            });
+         } else if (orgMessage.commands[i].commandType === 'MOVE'){
+            results.push({
+               completed: true
+            });
+            this.position = orgMessage.commands.value;
          }
       }
-      return obj;
+      return {
+         message: orgMessage.name,
+         results: results
+      }
    }
      
 }

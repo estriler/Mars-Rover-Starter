@@ -29,6 +29,7 @@ describe("contains a commands array passed into the constructor as the 2nd argum
         let newCommands = [command1, command2];
         let newMessage = new Message("newName", newCommands);
         expect(newMessage.commands).toEqual([command1, command2]);
+        // expect(newMessage.commands.length).toEqual(2);
     });
 
 });
