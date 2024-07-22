@@ -40,4 +40,13 @@ describe("Rover class", function() {
     expect(newReceivedMessage.results).toStrictEqual([{completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 100}}]);
   });
 
+  it("responds correctly to the mode change command", function(){
+    let rover = new Rover(100);
+    let command1 = new Command('MODE_CHANGE', "LOW_POWER");
+    let newMessage = new Message("messageName", [command1]);
+    let newReceivedMessage = rover.receiveMessage(newMessage);
+    expect(newReceivedMessage.results).toStrictEqual([{completed: true}]);
+    expect(rover.mode).toBe('LOW_POWER');
+  });
+
 });

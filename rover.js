@@ -21,7 +21,12 @@ class Rover {
                   position: this.position
                }
             });
-         } else if (orgMessage.commands[i].commandType === 'MOVE'){
+         } else if (orgMessage.commands[i].commandType === 'MODE_CHANGE'){
+            results.push({
+               completed: true
+            });
+            this.mode = orgMessage.commands[i].value;
+         }else if (orgMessage.commands[i].commandType === 'MOVE'){
             results.push({
                completed: true
             });
