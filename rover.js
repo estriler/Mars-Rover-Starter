@@ -31,7 +31,7 @@ class Rover {
                results.push({
                   completed: true
                });
-               this.position = orgMessage.commands.value;
+               this.position = orgMessage.commands[i].value;
             }else if(this.mode === "LOW_POWER"){
                results.push({
                   completed: false

@@ -58,4 +58,12 @@ describe("Rover class", function() {
     expect(newReceivedMessage.results).toStrictEqual([{completed: true}, {completed: false}]);
   });
 
+  it("responds with the position for the move command", function(){
+    let rover = new Rover(100);
+    let command1 = new Command("MOVE", 3232);
+    let newMessage = new Message("messageName", [command1]);
+    let newReceivedMessage = rover.receiveMessage(newMessage);
+    expect(rover.position).toStrictEqual(3232);
+  });
+
 });
