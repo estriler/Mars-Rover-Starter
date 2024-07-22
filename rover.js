@@ -27,10 +27,16 @@ class Rover {
             });
             this.mode = orgMessage.commands[i].value;
          }else if (orgMessage.commands[i].commandType === 'MOVE'){
-            results.push({
-               completed: true
+            if(this.mode === "NORMAL"){
+               results.push({
+                  completed: true
+               });
+               this.position = orgMessage.commands.value;
+            }else if(this.mode === "LOW_POWER"){
+               results.push({
+                  completed: false
             });
-            this.position = orgMessage.commands.value;
+            }
          }
       }
       return {
